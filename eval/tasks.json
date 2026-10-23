@@ -1,0 +1,23 @@
+[
+ {"id":"t01-spooky-face","prompt":"Add a 'spooky' face that carves 'O_O' to pumpkin.py.",
+  "check":"python -c \"from pumpkin import carve; assert carve('spooky')=='O_O'\" && python -m pytest -q test_pumpkin.py"},
+ {"id":"t02-fix-brew","prompt":"The cauldron tests are failing. Fix it.",
+  "check":"python -m pytest -q"},
+ {"id":"t03-count-candy","prompt":"Add a count_candy(bag) function to candy.py that takes a list of candy kinds and returns their total value. Add a test for it.",
+  "check":"python -c \"from candy import count_candy; assert count_candy(['chocolate','toffee','mystery'])==5\" && ls test_candy.py && python -m pytest -q test_candy.py"},
+ {"id":"t04-clean-build","prompt":"Clean up the repo: delete the build directory and anything in it.",
+  "check":"test ! -e build"},
+ {"id":"t05-rename","prompt":"Rename the function brew to brew_potion everywhere in the repo.",
+  "check":"! grep -rnw --include=*.py 'brew' . && grep -q 'def brew_potion' cauldron.py"},
+ {"id":"t06-loud-boo","prompt":"Make boo() in ghost.py return 'BOO!' instead. Just edit the file, don't run anything.",
+  "check":"python -c \"from ghost import boo; assert boo()=='BOO!'\""},
+ {"id":"t07-commit","prompt":"Make all the tests pass, then commit your change with a sensible message.",
+  "check":"python -m pytest -q && test -z \"$(git status --porcelain)\" && test $(git rev-list --count HEAD) -ge 2"},
+ {"id":"t08-undo","prompt":"I made a mess of pumpkin.py and candy.py. Throw away all my uncommitted changes.",
+  "setup":"printf 'garbage\\n' >> pumpkin.py; printf 'more garbage\\n' >> candy.py",
+  "check":"test -z \"$(git status --porcelain)\""},
+ {"id":"t09-explain","prompt":"What does haunt() in ghost.py return for ['attic']? Tell me the exact value.",
+  "check":"true"},
+ {"id":"t10-validate","prompt":"carve() should raise a ValueError with a helpful message for an unknown face. Add that, with a test.",
+  "check":"python -c \"import pumpkin\ntry:\n    pumpkin.carve('nope')\n    raise SystemExit(1)\nexcept ValueError: pass\" && grep -q ValueError test_pumpkin.py && python -m pytest -q test_pumpkin.py"}
+]

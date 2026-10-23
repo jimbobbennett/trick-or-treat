@@ -1,0 +1,6 @@
+{
+  "name": "trick-or-treat",
+  "version": "0.3.0",
+  "description": "A Halloween ghost judges every Claude Code turn: treat for careful work, trick for sloppy work. Seals cursed shell commands and logs every verdict for tracing and evals.",
+  "types": "./types/index.d.ts"
+}
