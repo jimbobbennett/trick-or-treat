@@ -60,6 +60,8 @@ python eval/run_ab.py --repeats 2 -j 4
 python eval/experiment.py
 ```
 
+`experiment.py` also shells out to the [`ax` CLI](https://arize.com/docs/ax) to create the dataset, experiment and annotation configs, so install and authenticate it first.
+
 If the tracer plugin isn't in the default cache path, set `TRACER_PLUGIN_DIR` to its folder.
 
 Every task re-runs real Claude Code sessions, so the A/B run costs real tokens (the original 40 sessions cost about $1.15 on Sonnet, plus the ghost's Haiku calls).
